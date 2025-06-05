@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Madhuri</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f4f6;
+      color: #1e3a8a;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    body.dark {
+      background-color: #1f2937;
+      color: #e5e7eb;
+    }
+    .section-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    nav {
+      background-color: #1e3a8a;
+      color: #ffffff;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    body.dark nav {
+      background-color: #374151;
+      color: #e5e7eb;
+    }
+    nav .section-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav h1 {
+      font-size: 24px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+    body.dark nav h1 {
+      color: #e5e7eb;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    nav ul li a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 16px;
+    }
+    body.dark nav ul li a {
+      color: #e5e7eb;
+    }
+    nav ul li a:hover {
+      color: #93c5fd;
+    }
+    body.dark nav ul li a:hover {
+      color: #bfdbfe;
+    }
+    #theme-toggle {
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: #ffffff;
+      cursor: pointer;
+    }
+    body.dark #theme-toggle {
+      color: #e5e7eb;
+    }
+    section {
+      padding: 60px 0;
+    }
+    #about {
+      background-color: #ffffff;
+    }
+    body.dark #about {
+      background-color: #111827;
+    }
+    #about h2 {
+      font-size: 36px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #1e3a8a;
+    }
+    body.dark #about h2 {
+      color: #bfdbfe;
+    }
+    #about .profile-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 4px solid #e5e7eb;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin: 0 auto 20px;
+      display: block;
+    }
+    body.dark #about .profile-img {
+      border-color: #4b5563;
+      box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    }
+    #about p {
+      font-size: 18px;
+      line-height: 1.6;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      color: #4b5563;
+    }
+    body.dark #about p {
+      color: #d1d5db;
+    }
+    #skills {
+      background-color: #f3f4f6;
+    }
+    body.dark #skills {
+      background-color: #374151;
+    }
+    #skills h2 {
+      font-size: 36px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #1e3a8a;
+    }
+    body.dark #skills h2 {
+      color: #bfdbfe;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+    }
+    .skill-card {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    body.dark .skill-card {
+      background-color: #4b5563;
+      box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+    }
+    .skill-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    }
+    body.dark .skill-card:hover {
+      box-shadow: 0 8px 12px rgba(255, 255, 255, 0.15);
+    }
+    .skill-card img {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 10px;
+    }
+    .skill-card h3 {
+      font-size: 20px;
+      font-weight: bold;
+      color: #1f2937;
+    }
+    body.dark .skill-card h3 {
+      color: #e5e7eb;
+    }
+    #projects {
+      background-color: #ffffff;
+    }
+    body.dark #projects {
+      background-color: #111827;
+    }
+    #projects h2 {
+      font-size: 36px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #1e3a8a;
+    }
+    body.dark #projects h2 {
+      color: #bfdbfe;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .project-card {
+      background-color: #f9fafb;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    body.dark .project-card {
+      background-color: #4b5563;
+      box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    }
+    body.dark .project-card:hover {
+      box-shadow: 0 8px 12px rgba(255, 255, 255, 0.15);
+    }
+    .project-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    .project-card h3 {
+      font-size: 20px;
+      font-weight: bold;
+      color: #1f2937;
+      margin-bottom: 10px;
+    }
+    body.dark .project-card h3 {
+      color: #e5e7eb;
+    }
+    .project-card p {
+      font-size: 16px;
+      color: #4b5563;
+      margin-bottom: 10px;
+    }
+    body.dark .project-card p {
+      color: #d1d5db;
+    }
+    .project-card a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+    body.dark .project-card a {
+      color: #60a5fa;
+    }
+    .project-card a:hover {
+      color: #1e40af;
+    }
+    body.dark .project-card a:hover {
+      color: #93c5fd;
+    }
+    #internships {
+      background-color: #f3f4f6;
+    }
+    body.dark #internships {
+      background-color: #374151;
+    }
+    #internships h2 {
+      font-size: 36px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #1e3a8a;
+    }
+    body.dark #internships h2 {
+      color: #bfdbfe;
+    }
+    .internships-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .internship-card {
+      background-color: #f9fafb;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    body.dark .internship-card {
+      background-color: #4b5563;
+      box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+    }
+    .internship-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    }
+    body.dark .internship-card:hover {
+      box-shadow: 0 8px 12px rgba(255, 255, 255, 0.15);
+    }
+    .internship-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    .internship-card h3 {
+      font-size: 20px;
+      font-weight: bold;
+      color: #1f2937;
+      margin-bottom: 10px;
+    }
+    body.dark .internship-card h3 {
+      color: #e5e7eb;
+    }
+    .internship-card p {
+      font-size: 16px;
+      color: #4b5563;
+      margin-bottom: 10px;
+    }
+    body.dark .internship-card p {
+      color: #d1d5db;
+    }
+    .internship-card a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+    body.dark .internship-card a {
+      color: #60a5fa;
+    }
+    .internship-card a:hover {
+      color: #1e40af;
+    }
+    body.dark .internship-card a:hover {
+      color: #93c5fd;
+    }
+    #contact {
+      background-color: #1e3a8a;
+      color: #ffffff;
+    }
+    body.dark #contact {
+      background-color: #374151;
+      color: #e5e7eb;
+    }
+    #contact h2 {
+      font-size: 36px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #ffffff;
+    }
+    body.dark #contact h2 {
+      color: #e5e7eb;
+    }
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .contact-links a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    body.dark .contact-links a {
+      color: #e5e7eb;
+    }
+    .contact-links a:hover {
+      color: #93c5fd;
+    }
+    body.dark .contact-links a:hover {
+      color: #bfdbfe;
+    }
+    footer {
+      background-color: #1f2937;
+      color: #ffffff;
+      padding: 15px 0;
+      text-align: center;
+    }
+    body.dark footer {
+      background-color: #111827;
+      color: #e5e7eb;
+    }
+    footer p {
+      font-size: 16px;
+      color: #ffffff;
+    }
+    body.dark footer p {
+      color: #e5e7eb;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="section-container">
+      <h1>My Portfolio</h1>
+      <div>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#internships">Internships</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#Hobbies">Hobbies</a></li>
+          <button id="theme-toggle">🌙</button>
+        </ul>
+        
+      </div>
+    </div>
+  </nav>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="section-container">
+      <h2>About Me</h2>
+      <img src="/images/ammu.jpg" alt="Profile Picture" class="profile-img">
+      <p>
+        I am currently pursuing B.Tech 2nd year in Computer Science Engineering at Siddartha institute of science and Technology.I am passionate about teamwork,learning new things,and growing skills bothn technicallyand personally.
+      </p>
+    </div>
+  </section>
+  
+  <!-- Skills Section -->
+  <section id="skills">
+    <div class="section-container">
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        
+        </div>
+        <div class="skill-card">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/python.svg" alt="Python Logo">
+          <h3>Python</h3>
+        </div>
+        
+        <div class="skill-card">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/mysql.svg" alt="SQL Logo">
+          <h3>SQL</h3>
+        </div>
+        <div class="skill-card">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/powerbi.svg" alt="PowerBI Logo">
+          <h3>PowerBI</h3>
+        </div>
+        <div class="skill-card">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub Logo">
+          <h3>GitHub</h3>
+        </div>
+        <div class="skill-card">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/html5.svg" alt="HTML Logo">
+          <h3>HTML</h3>
+        </div>
+        <div class="skill-card">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/css3.svg" alt="CSS Logo">
+          <h3>CSS</h3>
+        </div>
+        
+        <div class="skill-card">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/microsoftexcel.svg" alt="Excel Logo">
+          <h3>Excel</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <div class="section-container">
+      <h2>Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <img src="data:image/jpeg;base64,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" alt="E-Commerce Website">
+          <h3>E-Commerce Website</h3>
+          <p>A full-stack e-commerce platform built with React and Node.js, featuring user authentication and payment integration.</p>
+          <a href="https://github.com/yourusername/ecommerce-project" target="_blank">GitHub Link</a>
+        </div>
+        <div class="project-card">
+          <img src="https://i.pinimg.com/736x/ab/1c/08/ab1c08e0a6b02c689c86778e19b87c60.jpg" alt="Data Dashboard">
+          <h3>Data Dashboard</h3>
+          <p>A PowerBI dashboard for visualizing sales data, integrated with SQL database for real-time analytics.</p>
+          <a href="https://github.com/yourusername/data-dashboard" target="_blank">GitHub Link</a>
+        </div>
+        <div class="project-card">
+          <img src="https://th.bing.com/th/id/OIP.8nXrWcja2C0AusbVvTBH-gHaDt?rs=1&pid=ImgDetMain" alt="Task Management App">
+          <h3>Task Management App</h3>
+          <p>A task management application built with PHP and MySQL, with a responsive UI using Tailwind CSS.</p>
+          <a href="https://github.com/yourusername/task-management" target="_blank">GitHub Link</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Internships Section -->
+  <section id="internships">
+    <div class="section-container">
+      <h2>Internships</h2>
+      <div class="internships-grid">
+        <div class="internship-card">
+          <img src="https://th.bing.com/th/id/OIP.mgEp0RMN7jrcbi8nZHC0oAAAAA?rs=1&pid=ImgDetMain" alt="Web Development Internship">
+          <h3>Web Development Intern</h3>
+          <p>Tech Corp</p>
+          <p>June 2024 - August 2024</p>
+          <a href="https://github.com/yourusername/web-dev-internship" target="_blank">GitHub Link</a>
+        </div>
+        <div class="internship-card">
+          <img src="https://th.bing.com/th/id/OIP.mgEp0RMN7jrcbi8nZHC0oAAAAA?rs=1&pid=ImgDetMain" alt="Data Analyst Internship">
+          <h3>Data Analyst Intern</h3>
+          <p>Data Insights Ltd.</p>
+          <p>January 2024 - March 2024</p>
+          <a href="https://github.com/yourusername/data-analyst-internship" target="_blank">GitHub Link</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hobbies Section -->
+  <section id="internships">
+    <div class="section-container">
+      <h2>Hobbies</h2>
+      <div class="internships-grid">
+        <div class="internship-card">
+          <img src="/sample/cse1/dance.jpg" alt="Web Development Internship">
+          <h3>Dancing</h3>
+          
+        </div>
+        <div class="internship-card">
+          <img src="/images/travelling.jpg" alt="Data Analyst Internship">
+          <h3>Travelling</h3>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="section-container">
+      <h2>Contact Me</h2>
+      <div class="contact-links">
+        <a href="mailto:ammuyeggoni@gmail.com">
+          <span>📧</span> ammuyeggoni@gmail.com
+        </a>
+        <a href="https://wa.me/8639492875" target="_blank">
+          <span>📱</span> +91 86394 92875
+        </a>
+        <a href="https://github.com/yeggonimadhuri" target="_blank">
+          <span>🐙</span> GitHub
+        </a>
+        <a href="https://www.linkedin.com/public-profile/settings" target="_blank">
+          <span>💼</span> LinkedIn
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Yeggoni Madhuri. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const toggleButton = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    // Load saved theme from localStorage
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    if (savedTheme === 'dark') {
+      body.classList.add('dark');
+      toggleButton.textContent = '☀️';
+    } else {
+      toggleButton.textContent = '🌙';
+    }
+
+    // Theme toggle event listener
+    toggleButton.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      const newTheme = body.classList.contains('dark') ? 'dark' : 'light';
+      localStorage.setItem('theme', newTheme);
+      toggleButton.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+    });
+  </script>
+</body>
+</html>
